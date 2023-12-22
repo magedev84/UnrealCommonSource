@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "unreal_common/PathFind/CGridActorManager.h"
+#include "PathFind/CGridActorManager.h"
 #include "CGridActor.h"
 
 #include "mage_astar.h"

@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "unreal_common/CGameInstance.h"
-#include "unreal_common/CDataTableManager.h"
+#include "CGameInstance.h"
+#include "CDataTableManager.h"
 #include "CGameInstanceSubsystem.h"
 
 

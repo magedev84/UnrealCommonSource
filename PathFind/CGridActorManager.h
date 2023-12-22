@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "unreal_common/CGameInstanceSubsystem.h"
+#include "CGameInstanceSubsystem.h"
 #include "CGridActorManager.generated.h"
 
 /**
