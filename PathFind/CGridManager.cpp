@@ -1,7 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "CGetter.h"
-#include "CGameInstance.h"
-
+#include "UnrealCommonSource/PathFind/CGridManager.h"
 

@@ -16,6 +16,15 @@ class UCGameInstance : public UGameInstance, public FTickableGameObject
 	
 	friend class UCDataTableManager;
 
+public:
+	// 教臂畔 
+	class UCSingleton* GetSingletonByClass(UClass* inClass);
+
+	template <typename T>
+	T* GetSingleton() {
+		return Cast<T>(GetSingletonByClass(T::StaticClass()));
+	}
+
 protected:
 	virtual void Init() override;
 	virtual void Shutdown() override;
@@ -27,6 +36,9 @@ protected:
 	virtual TStatId GetStatId() const override {
 		return UObject::GetStatID();
 	}
+
+
+	
 
 
 protected:
@@ -42,4 +54,13 @@ protected:
 
 	UPROPERTY()
 	class UCDataTableManager* DataTableManager = nullptr;
+
+	//------------------------------------------------------
+	// 教臂畔 包府
+	//------------------------------------------------------
+	UPROPERTY(EditAnywhere)
+	TMap<TSubclassOf<class UCSingleton>, TSubclassOf<class UCSingleton>> SingletonClassMap;
+
+	UPROPERTY(EditAnywhere)
+	TMap<UClass*, class UCSingleton*> SingletonInstanceMap;
 };

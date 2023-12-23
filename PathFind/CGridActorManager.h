@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class PATH_FIND_TEST_API UCGridActorManager : public UCGameInstanceSubsystem
 {
 	friend class ACGridActor;
@@ -34,4 +34,7 @@ protected:
 	// 나중에는 여러개를 처리
 	UPROPERTY()
 	class ACGridActor* GridActor = nullptr;
+
+	UPROPERTY(Editanywhere)
+	int32 TestValue = 0;
 };

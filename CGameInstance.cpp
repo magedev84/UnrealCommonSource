@@ -4,6 +4,7 @@
 #include "CGameInstance.h"
 #include "CDataTableManager.h"
 #include "CGameInstanceSubsystem.h"
+#include "CSingleton.h"
 
 
 void UCGameInstance::Init()
@@ -17,6 +18,19 @@ void UCGameInstance::Init()
 	
 	// 관리할 서브시스템을 설정
 	SubsystemList = GetSubsystemArray<UCGameInstanceSubsystem>();
+
+	// 등록된 클래스를 루프돌면서 생성 및 등록
+	for (auto& pair : SingletonClassMap)
+	{
+		UCSingleton* singletonInstance = NewObject<UCSingleton>(this, pair.Value);
+		if (nullptr == singletonInstance)
+		{
+			check(false);
+			continue;
+		}
+
+		SingletonInstanceMap.Emplace(pair.Key, singletonInstance);
+	}
 }
 
 void UCGameInstance::Shutdown()
@@ -37,4 +51,14 @@ void UCGameInstance::Tick(float DeltaTime)
 			SubsystemList[i]->Update(DeltaTime);
 		}
 	}
+}
+
+
+class UCSingleton* UCGameInstance::GetSingletonByClass(UClass* inClass)
+{
+	if (UCSingleton** findInstance = SingletonInstanceMap.Find(inClass)) {
+		return *findInstance;
+	}
+
+	return nullptr;
 }

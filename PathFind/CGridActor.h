@@ -71,7 +71,7 @@ public:
 
 
 
-UCLASS()
+UCLASS(Blueprintable)
 class PATH_FIND_TEST_API ACGridActor : public AActor
 {
 	GENERATED_BODY()

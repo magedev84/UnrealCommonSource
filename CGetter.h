@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/GameplayStatics.h"
+#include "CGameInstance.h"
+#include "CSingleton.h"
 #include "UObject/NoExportTypes.h"
 #include "CGetter.generated.h"
 
@@ -46,4 +48,14 @@ public:
 	{
 		return Cast<T>(UGameplayStatics::GetPlayerController(inObj, 0));
 	}
+
+	template <typename T>
+	static T* GetSingleton(const UObject* inObj)
+	{
+		if (UCGameInstance* gameInstance = GetGameInstance<UCGameInstance>(inObj)) {
+			return gameInstance->GetSingleton<T>();
+		}
+		return nullptr;
+	}
+
 };
